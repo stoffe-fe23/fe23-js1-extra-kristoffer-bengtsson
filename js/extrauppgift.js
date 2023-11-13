@@ -53,6 +53,7 @@ wrapperBox.style.display = "flex";
 wrapperBox.style.flexWrap = "wrap";
 wrapperBox.style.justifyContent = "center";
 wrapperBox.style.width = `${boxSize}px`;
+wrapperBox.style.minWidth = `${boxSize}px`;
 
 // Dela upp boxen i 4 kvadranter
 createQuadrant(wrapperBox, 0);
