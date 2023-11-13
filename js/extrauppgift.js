@@ -3,14 +3,19 @@
     Kristoffer Bengtsson
 */
 
-const blockPadding = 32;
-const quadWidth = 320;
-const quadHeight = 320;
+// Antal färg-element per kvadrant
+const colorsCount = 10;
+
+// Bredd/höjd på synlig färgremsa (skillnad i storlek på element)
+const boxSpacing = 32;
+
+const quadSize = Math.floor(colorsCount * boxSpacing);
+const boxSize = Math.floor(quadSize * 2);
 
 function createQuadrant(parent) {
     const newQuad = document.createElement("div");
-    newQuad.style.width = `${quadWidth}px`; 
-    newQuad.style.height = `${quadHeight}px`; 
+    newQuad.style.width = `${quadSize}px`; 
+    newQuad.style.height = `${quadSize}px`; 
     newQuad.style.margin = "0px";
     newQuad.style.padding = "0px";
     parent.appendChild(newQuad);
@@ -84,7 +89,7 @@ document.body.appendChild(wrapperBox);
 wrapperBox.style.display = "flex";
 wrapperBox.style.flexWrap = "wrap";
 wrapperBox.style.justifyContent = "center";
-wrapperBox.style.width = `${quadWidth*2}px`;
+wrapperBox.style.width = `${boxSize}px`;
 
 // Dela upp boxen i 4 kvadranter
 const boxUpperLeft = createQuadrant(wrapperBox);
@@ -94,11 +99,11 @@ const boxLowerRight = createQuadrant(wrapperBox);
 
 // Övre vänstra kvadranten
 let currentParent = boxUpperLeft;
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < colorsCount; i++) {
     const colorBox = document.createElement("div");
-    colorBox.style.width = `${quadWidth - (blockPadding*i)}px`;
-    colorBox.style.height = `${quadHeight - (blockPadding*i)}px`;
-    colorBox.style.backgroundColor = colorsUpperLeft[i];
+    colorBox.style.width = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.height = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.backgroundColor = colorsUpperLeft[i % colorsUpperLeft.length];
     colorBox.style.margin = "0px";
     colorBox.style.padding = "0px";
 
@@ -108,12 +113,12 @@ for (let i = 0; i < 10; i++) {
 
 // Övre högra kvadranten
 currentParent = boxUpperRight;
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < colorsCount; i++) {
     const colorBox = document.createElement("div");
-    colorBox.style.width = `${quadWidth - (blockPadding*i)}px`;
-    colorBox.style.height = `${quadHeight - (blockPadding*i)}px`;
-    colorBox.style.backgroundColor = colorsUpperRight[i];
-    colorBox.style.margin = i > 0 ? `0px 0px 0px ${blockPadding}px` : "0px 0px 0px 0px";
+    colorBox.style.width = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.height = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.backgroundColor = colorsUpperRight[i % colorsUpperRight.length];
+    colorBox.style.margin = i > 0 ? `0px 0px 0px ${boxSpacing}px` : "0px 0px 0px 0px";
     colorBox.style.padding = "0px";
 
     currentParent.appendChild(colorBox);
@@ -122,12 +127,12 @@ for (let i = 0; i < 10; i++) {
 
 // Nedre vänstra kvadranten
 currentParent = boxLowerLeft;
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < colorsCount; i++) {
     const colorBox = document.createElement("div");
-    colorBox.style.width = `${quadWidth - (blockPadding*i)}px`;
-    colorBox.style.height = `${quadHeight - (blockPadding*i)}px`;
-    colorBox.style.backgroundColor = colorsLowerLeft[i];
-    colorBox.style.margin = i > 0 ? `0px 0px 0px ${blockPadding}px` : "0px 0px 0px 0px";
+    colorBox.style.width = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.height = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.backgroundColor = colorsLowerLeft[i % colorsLowerLeft.length];
+    colorBox.style.margin = i > 0 ? `0px 0px 0px ${boxSpacing}px` : "0px 0px 0px 0px";
     colorBox.style.padding = "0px";
 
     currentParent.appendChild(colorBox);
@@ -136,11 +141,11 @@ for (let i = 0; i < 10; i++) {
 
 // Nedre högra kvadranten
 currentParent = boxLowerRight;
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < colorsCount; i++) {
     const colorBox = document.createElement("div");
-    colorBox.style.width = `${quadWidth - (blockPadding*i)}px`;
-    colorBox.style.height = `${quadHeight - (blockPadding*i)}px`;
-    colorBox.style.backgroundColor = colorsLowerRight[i];
+    colorBox.style.width = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.height = `${quadSize - (boxSpacing*i)}px`;
+    colorBox.style.backgroundColor = colorsLowerRight[i % colorsLowerRight.length];
     colorBox.style.margin = "0px";
     colorBox.style.padding = "0px";
 
