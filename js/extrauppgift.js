@@ -3,40 +3,14 @@
     Kristoffer Bengtsson
 */
 
-// Antal färg-element per kvadrant
+// Antal färgelement per kvadrant
 const colorsCount = 10;
 
-// Bredd eller höjd på synlig färgremsa (dvs skillnad i storlek på färgelementen)
+// Storlek på synlig färgremsa (dvs skillnad i storlek på färgelementen)
 const boxSpacing = 32;
 
 const quadSize = Math.floor(colorsCount * boxSpacing);
 const boxSize = Math.floor(quadSize * 2);
-
-// Skapa kvadrant med angiven färgskala och ordning
-function createQuadrant(parent, startColor, reverseOrder = false) {
-    const newQuad = document.createElement("div");
-    newQuad.style.width = `${quadSize}px`;
-    newQuad.style.height = `${quadSize}px`;
-    newQuad.style.margin = "0px";
-    newQuad.style.padding = "0px";
-    parent.appendChild(newQuad);
-
-    let currentParent = newQuad;
-    for (let i = 0; i < colorsCount; i++) {
-        const colorHue = startColor + (i * 35);
-        const colorBox = document.createElement("div");
-        const leftMargin = reverseOrder ? boxSpacing : 0;
-
-        colorBox.style.width = `${quadSize - (boxSpacing * i)}px`;
-        colorBox.style.height = `${quadSize - (boxSpacing * i)}px`;
-        colorBox.style.backgroundColor = `hsl(${colorHue}, 70%, 80%)`;
-        colorBox.style.margin = i > 0 ? `0px 0px 0px ${leftMargin}px` : "0px 0px 0px 0px";
-        colorBox.style.padding = "0px";
-
-        currentParent.appendChild(colorBox);
-        currentParent = colorBox;
-    }
-}
 
 // Body style: Gör bakgrund svart och centrera wrapper-boxen på sidan 
 document.body.style.backgroundColor = "black";
@@ -58,4 +32,27 @@ wrapperBox.style.minWidth = `${boxSize}px`;
 // Dela upp boxen i 4 kvadranter
 for (let i = 0; i < 4; i++) {
     createQuadrant(wrapperBox, i * 100, i == 1 || i == 2 ? true : false );    
+}
+
+// Skapa kvadrant med angiven färgskala och ordning
+function createQuadrant(parent, startColor, reverseOrder = false) {
+    const newQuad = document.createElement("div");
+    newQuad.style.width = `${quadSize}px`;
+    newQuad.style.height = `${quadSize}px`;
+    newQuad.style.margin = "0px";
+    newQuad.style.padding = "0px";
+    parent.appendChild(newQuad);
+
+    let currentParent = newQuad;
+    for (let i = 0; i < colorsCount; i++) {
+        const colorBox = document.createElement("div");
+        colorBox.style.width = `${quadSize - (boxSpacing * i)}px`;
+        colorBox.style.height = `${quadSize - (boxSpacing * i)}px`;
+        colorBox.style.backgroundColor = `hsl(${startColor + (i * 35)}, 70%, 80%)`;
+        colorBox.style.margin = reverseOrder && (i > 0) ? `0px 0px 0px ${boxSpacing}px` : "0px 0px 0px 0px";
+        colorBox.style.padding = "0px";
+
+        currentParent.appendChild(colorBox);
+        currentParent = colorBox;
+    }
 }
