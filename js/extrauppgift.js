@@ -22,16 +22,16 @@ document.body.style.margin = "0px";
 
 // Wrapper box
 const wrapperBox = document.createElement("div");
-document.body.appendChild(wrapperBox);
 wrapperBox.style.display = "flex";
 wrapperBox.style.flexWrap = "wrap";
 wrapperBox.style.justifyContent = "center";
 wrapperBox.style.width = `${boxSize}px`;
 wrapperBox.style.minWidth = `${boxSize}px`;
+document.body.appendChild(wrapperBox);
 
 // Dela upp boxen i 4 kvadranter
 for (let i = 0; i < 4; i++) {
-    createQuadrant(wrapperBox, i * 100, i == 1 || i == 2 ? true : false );    
+    createQuadrant(wrapperBox, i * 100, (i == 1 || i == 2) );
 }
 
 // Skapa kvadrant med angiven färgskala och ordning
