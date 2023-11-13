@@ -6,13 +6,13 @@
 // Antal färg-element per kvadrant
 const colorsCount = 10;
 
-// Bredd eller höjd på synlig färgremsa (dvs skillnad i storlek på element)
+// Bredd eller höjd på synlig färgremsa (dvs skillnad i storlek på färgelementen)
 const boxSpacing = 32;
 
 const quadSize = Math.floor(colorsCount * boxSpacing);
 const boxSize = Math.floor(quadSize * 2);
 
-// Skapa kvadrant med angiven färglista och ordning
+// Skapa kvadrant med angiven färgskala och ordning
 function createQuadrant(parent, startColor, reverseOrder = false) {
     const newQuad = document.createElement("div");
     newQuad.style.width = `${quadSize}px`;
@@ -29,7 +29,7 @@ function createQuadrant(parent, startColor, reverseOrder = false) {
 
         colorBox.style.width = `${quadSize - (boxSpacing * i)}px`;
         colorBox.style.height = `${quadSize - (boxSpacing * i)}px`;
-        colorBox.style.backgroundColor = `hsl(${colorHue}, 100%, 80%)`;
+        colorBox.style.backgroundColor = `hsl(${colorHue}, 70%, 80%)`;
         colorBox.style.margin = i > 0 ? `0px 0px 0px ${leftMargin}px` : "0px 0px 0px 0px";
         colorBox.style.padding = "0px";
 
@@ -38,7 +38,7 @@ function createQuadrant(parent, startColor, reverseOrder = false) {
     }
 }
 
-// Gör body svart och centrera wrapper-boxen på sidan 
+// Body style: Gör bakgrund svart och centrera wrapper-boxen på sidan 
 document.body.style.backgroundColor = "black";
 document.body.style.display = "flex";
 document.body.style.justifyContent = "center";
@@ -56,7 +56,6 @@ wrapperBox.style.width = `${boxSize}px`;
 wrapperBox.style.minWidth = `${boxSize}px`;
 
 // Dela upp boxen i 4 kvadranter
-createQuadrant(wrapperBox, 0);
-createQuadrant(wrapperBox, 95, true);
-createQuadrant(wrapperBox, 200, true);
-createQuadrant(wrapperBox, 290);
+for (let i = 0; i < 4; i++) {
+    createQuadrant(wrapperBox, i * 100, i == 1 || i == 2 ? true : false );    
+}
