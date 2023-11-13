@@ -6,7 +6,7 @@
 // Antal färg-element per kvadrant
 const colorsCount = 10;
 
-// Bredd/höjd på synlig färgremsa (skillnad i storlek på element)
+// Bredd eller höjd på synlig färgremsa (dvs skillnad i storlek på element)
 const boxSpacing = 32;
 
 const quadSize = Math.floor(colorsCount * boxSpacing);
