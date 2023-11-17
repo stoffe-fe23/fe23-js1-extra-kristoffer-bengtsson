@@ -48,7 +48,7 @@ function createQuadrant(parent, startColor, reverseOrder = false) {
         const colorBox = document.createElement("div");
         colorBox.style.width = `${quadSize - (boxSpacing * i)}px`;
         colorBox.style.height = `${quadSize - (boxSpacing * i)}px`;
-        colorBox.style.backgroundColor = `hsl(${startColor + (i * 35)}, 70%, 80%)`;
+        colorBox.style.backgroundColor = `hsl(${startColor + (i * (360 / colorsCount))}, 70%, 80%)`;
         colorBox.style.margin = reverseOrder && (i > 0) ? `0px 0px 0px ${boxSpacing}px` : "0px 0px 0px 0px";
         colorBox.style.padding = "0px";
 
